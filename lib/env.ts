@@ -7,6 +7,7 @@ export const env = z.object({
   GEMINI_API_KEY: z.string().min(1),
   GEMINI_MODEL: z.string().min(1),
   GEMINI_LIVE_MODEL: z.string().min(1),
+  APP_NAME: z.string().min(1),
 }).parse(process.env);
 
 

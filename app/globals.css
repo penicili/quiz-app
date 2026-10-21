@@ -58,8 +58,8 @@
     --outline: 3px solid #111111;
 
     /* Hard shadows: no blur keeps the neo-brutalist look */
-    --neo-shadow-hard-sm: 4px 4px 0 #111111;
-    --neo-shadow-hard: 7px 7px 0 #111111;
+    --neo-shadow-hard-sm: 3px 3px  #111111;
+    --neo-shadow-hard: 5px 5px  #111111;
     --neo-shadow-hard-lg: 10px 10px 0 #111111;
 
 }
@@ -143,4 +143,6 @@ select {
 .neo-focus:focus-visible {
     outline: var(--outline);
     outline-offset: 4px;
+    background-color: var(--yellow);
+    box-shadow: var(--neo-shadow-hard-sm);
 }
