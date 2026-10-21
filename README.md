@@ -6,7 +6,7 @@ This project is based on [Quiz App](https://roadmap.sh/projects/quiz-app) from [
 - User can create a new quiz or
 - User can start to work on an existing quiz, with start button and description
 - User can see the final score and the result of each of their answered questions
-- 
+- User can export created quiz into moodle friendly format (aiken and others)
 - Quiz will be stored in a JSON-like format (maybe stored in something like mongo-db)
 - Quiz will have title/name, descriptions, time limit(optional), questions, questiontype
 - Each question will have question, answer(s), can have multipole correct question

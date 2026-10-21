@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { env } from "@/lib/env";
 
 const navLinkClassName =
-  "neo-focus inline-block rounded-sm px-2 py-1 transition-transform hover:bg-yellow";
+  "neo-focus text-white inline-block rounded-sm px-2 py-1 transition-transform hover:bg-yellow";
 
 function NavLink({ href, children }: { href: string; children: ReactNode }) {
   return (
@@ -15,14 +15,14 @@ function NavLink({ href, children }: { href: string; children: ReactNode }) {
 
 const Navbar = () => {
   return (
-    <header className="mx-12 mt-5 rounded-lg border-4 border-ink bg-white px-6 py-5 shadow-hard md:px-12">
+    <header className="bg-gray-700 px-6 py-5 shadow-hard md:px-12 border-b-4 border-b-white">
       <nav
         aria-label="Main navigation"
         className="mx-auto flex max-w-6xl items-center justify-between gap-6"
       >
         <Link
           href="/"
-          className="font-display text-xl font-black tracking-tight md:text-2xl"
+          className="font-display text-xl font-black text-white tracking-tight md:text-2xl"
         >
           {env.APP_NAME}
         </Link>

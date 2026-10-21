@@ -36,8 +36,8 @@
     --yellow: hsl(60, 100%, 50%);
     --yellow-light: hsl(60, 100%, 75%);
     --yellow-dark: hsl(60, 100%, 35%);
-    --yellow-vivid: hsl(60, 100%, 50%);
-    --yellow-muted: hsl(60, 35%, 50%);
+    --yellow-vivid: hsl(60, 100%, 60%);
+    --yellow-muted: hsl(48, 100%, 66%);
 
     /* Orange */
     --orange: hsl(14, 100%, 53%);
@@ -51,7 +51,9 @@
     --beige-2: #f3f0e8;
 
     /* Typography families */
-    --font-body: Arial, Helvetica, sans-serif;
+    --font-body-family: var(--font-inter), Arial, Helvetica, sans-serif;
+    --font-heading-family: var(--font-jakarta-sans), Arial, Helvetica, sans-serif;
+    --font-display-family: var(--font-syne), Arial, Helvetica, sans-serif;
 
     /* Neo-brutalist borders and outlines */
     --border: 3px solid #111111;
@@ -98,7 +100,9 @@
     --color-beige: var(--beige);
     --color-beige-2: var(--beige-2);
     --color-ink: #111111;
-    --font-display: var(--font-lexend);
+    --font-body: var(--font-body-family);
+    --font-heading: var(--font-heading-family);
+    --font-display: var(--font-display-family);
     --shadow-hard-sm: var(--neo-shadow-hard-sm);
     --shadow-hard: var(--neo-shadow-hard);
     --shadow-hard-lg: var(--neo-shadow-hard-lg);
@@ -112,7 +116,7 @@ body {
     margin: 0;
     background: var(--beige-2);
     color: #111111;
-    font-family: var(--font-body);
+    font-family: var(--font-body-family);
 }
 
 h1,
@@ -120,7 +124,7 @@ h2,
 h3,
 h4,
 button {
-    font-family: var(--font-display);
+    font-family: var(--font-heading-family);
 }
 
 button,

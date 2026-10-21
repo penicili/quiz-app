@@ -1,11 +1,21 @@
 import type { Metadata } from "next";
-import { Lexend_Mega } from "next/font/google";
+import { Syne, Plus_Jakarta_Sans, Inter } from "next/font/google";
 import Navbar from "@/components/layout/navbar";
 import "./globals.css";
 
-const lexendMega = Lexend_Mega({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-lexend",
+  variable: "--font-syne",
+});
+
+const jakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-jakarta-sans",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -15,11 +25,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={lexendMega.variable}>
+    <html
+      lang="en"
+      className={`${syne.variable} ${jakartaSans.variable} ${inter.variable}`}
+    >
       <body>
-        <Navbar/>
-        <main className="min-h-screen px-6 py-12 text-ink md:px-12">
-          <div className="mx-auto flex max-w-6xl flex-col gap-10">
+        <Navbar />
+        <main className="min-h-screen w-screen text-ink">
+          <div className="flex flex-col w-full gap-10">
             {children}
           </div>
         </main>
