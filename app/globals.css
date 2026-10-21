@@ -58,11 +58,50 @@
     --outline: 3px solid #111111;
 
     /* Hard shadows: no blur keeps the neo-brutalist look */
-    --shadow-hard-sm: 4px 4px 0 #111111;
-    --shadow-hard: 7px 7px 0 #111111;
-    --shadow-hard-lg: 10px 10px 0 #111111;
-    --shadow-none: 0 0 0 transparent;
+    --neo-shadow-hard-sm: 4px 4px 0 #111111;
+    --neo-shadow-hard: 7px 7px 0 #111111;
+    --neo-shadow-hard-lg: 10px 10px 0 #111111;
 
+}
+
+@theme {
+    --color-cyan: var(--cyan);
+    --color-cyan-light: var(--cyan-light);
+    --color-cyan-dark: var(--cyan-dark);
+    --color-cyan-vivid: var(--cyan-vivid);
+    --color-cyan-muted: var(--cyan-muted);
+    --color-green: var(--green);
+    --color-green-light: var(--green-light);
+    --color-green-dark: var(--green-dark);
+    --color-green-vivid: var(--green-vivid);
+    --color-green-muted: var(--green-muted);
+    --color-magenta: var(--magenta);
+    --color-magenta-light: var(--magenta-light);
+    --color-magenta-dark: var(--magenta-dark);
+    --color-magenta-vivid: var(--magenta-vivid);
+    --color-magenta-muted: var(--magenta-muted);
+    --color-blue: var(--blue);
+    --color-blue-light: var(--blue-light);
+    --color-blue-dark: var(--blue-dark);
+    --color-blue-vivid: var(--blue-vivid);
+    --color-blue-muted: var(--blue-muted);
+    --color-yellow: var(--yellow);
+    --color-yellow-light: var(--yellow-light);
+    --color-yellow-dark: var(--yellow-dark);
+    --color-yellow-vivid: var(--yellow-vivid);
+    --color-yellow-muted: var(--yellow-muted);
+    --color-orange: var(--orange);
+    --color-orange-light: var(--orange-light);
+    --color-orange-dark: var(--orange-dark);
+    --color-orange-vivid: var(--orange-vivid);
+    --color-orange-muted: var(--orange-muted);
+    --color-beige: var(--beige);
+    --color-beige-2: var(--beige-2);
+    --color-ink: #111111;
+    --font-display: var(--font-lexend);
+    --shadow-hard-sm: var(--neo-shadow-hard-sm);
+    --shadow-hard: var(--neo-shadow-hard);
+    --shadow-hard-lg: var(--neo-shadow-hard-lg);
 }
 
 * {
@@ -95,6 +134,10 @@ select {
     border-radius: 0.375rem;
     outline: var(--outline);
     outline-offset: 4px;
+}
+
+.neo-border {
+    border: var(--border);
 }
 
 .neo-focus:focus-visible {

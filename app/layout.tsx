@@ -4,7 +4,7 @@ import "./globals.css";
 
 const lexendMega = Lexend_Mega({
   subsets: ["latin"],
-  variable: "--font-display",
+  variable: "--font-lexend",
 });
 
 export const metadata: Metadata = {
@@ -15,7 +15,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={lexendMega.variable}>
-      <body>{children}</body>
+      <body>
+        <main className="min-h-screen bg-beige-2 px-6 py-12 text-ink md:px-12">
+          <div className="mx-auto flex max-w-6xl flex-col gap-10">
+            {children}
+          </div>
+        </main>
+      </body>
     </html>
   );
 }
