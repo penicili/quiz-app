@@ -1,4 +1,21 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This project is based on [Quiz App](https://roadmap.sh/projects/quiz-app) from [Roadmap.sh Frontend Projects](https://roadmap.sh/frontend/projects)
+
+
+## Initial Requirements
+- JSON Based Quiz
+- User can create a new quiz or
+- User can start to work on an existing quiz, with start button and description
+- User can see the final score and the result of each of their answered questions
+- 
+- Quiz will be stored in a JSON-like format (maybe stored in something like mongo-db)
+- Quiz will have title/name, descriptions, time limit(optional), questions, questiontype
+- Each question will have question, answer(s), can have multipole correct question
+
+## Additional Requirements
+- AI integration, create a quiz from a provided PDF file material
+
+---
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) 
 
 ## Getting Started
 
