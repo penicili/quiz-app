@@ -15,15 +15,15 @@ const formats = [
     name: "Moodle XML",
     description: "Moodle's native format for importing quizzes.",
     status: "Coming soon",
-    className: "bg-magenta-light",
+    className: "bg-pink",
   },
 ];
 
 export default function Home() {
   return (
     <div className="flex flex-col gap-10">
-      <section className="md:min-h-screen min-h-1/2 bg-yellow-muted p-8 md:p-12">
-        <p className="mb-3 font-display text-sm font-black uppercase tracking-[0.2em] text-magenta">
+      <section className="md:min-h-screen min-h-1/2 bg-yellow p-8 md:p-12">
+        <p className="mb-3 font-display text-sm font-black uppercase tracking-[0.2em] text-pink">
           Quiz tools
         </p>
         <p className="mb-3 font-display text-6xl font-black uppercase tracking-[0.2em] text-black">
