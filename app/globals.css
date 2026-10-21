@@ -1,44 +1,46 @@
 @import "tailwindcss";
 
 :root {
-    --cyan: #74B9FF;
-    --pink: #FF6B6B;
-    --yellow: #FFD23F;
-    --off-white: #FFFDF5;
-    --beige: #f3f0e8;
-    --green: #88D498;
-    --orange: #FFA552;
-    --ink: #111111;
-    --lavender: #B8A9FA;
-    --border: 3px solid var(--ink);
-    --shadow-hard-sm: 3px 3px var(--ink);
-    --shadow-hard: 5px 5px var(--ink);
-    --shadow-hard-lg: 10px 10px var(--ink);
+  --cyan: #74b9ff;
+  --pink: #ff6b6b;
+  --yellow: #ffd23f;
+  --off-white: #fffdf5;
+  --beige: #f3f0e8;
+  --green: #88d498;
+  --orange: #ffa552;
+  --ink: #111111;
+  --lavender: #b8a9fa;
+  --border: 3px solid var(--ink);
+  --shadow-hard-sm: 3px 3px var(--ink);
+  --shadow-hard: 5px 5px var(--ink);
+  --shadow-hard-lg: 10px 10px var(--ink);
 }
 
 @theme {
-    --color-cyan: var(--cyan);
-    --color-pink: var(--pink);
-    --color-yellow: var(--yellow);
-    --color-beige: var(--beige);
-    --color-ink: var(--ink);
-    --font-body: var(--font-inter), Arial, Helvetica, sans-serif;
-    --font-heading: var(--font-jakarta-sans), Arial, Helvetica, sans-serif;
-    --font-display: var(--font-syne), Arial, Helvetica, sans-serif;
-    --shadow-hard-sm: 3px 3px var(--ink);
-    --shadow-hard: 5px 5px var(--ink);
-    --shadow-hard-lg: 10px 10px var(--ink);
+  --color-offwhite: var(--off-white);
+  --color-lavender: var(--lavender);
+  --color-cyan: var(--cyan);
+  --color-pink: var(--pink);
+  --color-yellow: var(--yellow);
+  --color-beige: var(--beige);
+  --color-ink: var(--ink);
+  --font-body: var(--font-inter), Arial, Helvetica, sans-serif;
+  --font-heading: var(--font-jakarta-sans), Arial, Helvetica, sans-serif;
+  --font-display: var(--font-syne), Arial, Helvetica, sans-serif;
+  --shadow-hard-sm: 3px 3px var(--ink);
+  --shadow-hard: 5px 5px var(--ink);
+  --shadow-hard-lg: 10px 10px var(--ink);
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    background: var(--beige);
-    color: var(--ink);
-    font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--beige);
+  color: var(--ink);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
 }
 
 h1,
@@ -46,29 +48,105 @@ h2,
 h3,
 h4,
 button {
-    font-family: var(--font-jakarta-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-jakarta-sans), Arial, Helvetica, sans-serif;
 }
 
 button,
 input,
 textarea,
 select {
-    font: inherit;
+  font: inherit;
 }
 
 .neo-outline {
-    border-radius: 0.375rem;
-    outline: var(--border);
-    outline-offset: 4px;
+  border-radius: 0.375rem;
+  outline: var(--border);
+  outline-offset: 4px;
 }
 
 .neo-border {
-    border: var(--border);
+  border: var(--border);
 }
 
 .neo-focus:focus-visible {
-    outline: var(--border);
-    outline-offset: 4px;
-    background-color: var(--yellow);
-    box-shadow: var(--shadow-hard-sm);
+  outline: var(--border);
+  outline-offset: 4px;
+  background-color: var(--yellow);
+  box-shadow: var(--shadow-hard-sm);
+}
+/* Button */
+.neo-btn {
+  display: inline-block;
+  border: var(--border);
+  border-radius: 0;
+  background: var(--yellow);
+  color: var(--ink);
+  box-shadow: var(--shadow-hard);
+  font-weight: 700;
+  padding: 12px 24px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.1s ease;
+}
+
+.neo-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 0 var(--ink);
+}
+
+.neo-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+.neo-btn--inverted {
+  background: #111111;
+  color: white;
+  box-shadow: 5px 5px var(--pink);
+}
+
+/* Button variants */
+.neo-btn--secondary {
+  background: var(--pink);
+  box-shadow: 5px 5px white;
+}
+
+.neo-btn--secondary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 0 white;
+}
+
+.neo-btn--secondary:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+.neo-btn:focus-visible {
+  outline: 3px solid #74b9ff;
+  outline-offset: 3px;
+}
+
+/* non button Links */
+
+.neo-link {
+  display: inline-block;
+  border: var(--border);
+  padding: 6px 12px;
+  background: white;
+  color: var(--ink);
+  box-shadow: var(--shadow-hard);
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.1s ease;
+}
+
+.neo-link:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 0 var(--ink);
+}
+
+.neo-link:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
 }
