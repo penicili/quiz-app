@@ -2,12 +2,9 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { env } from "@/lib/env";
 
-const navLinkClassName =
-  "neo-focus text-white inline-block rounded-sm px-2 py-1 transition-transform hover:bg-yellow";
-
 function NavLink({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <Link href={href} className={navLinkClassName}>
+    <Link href={href} className={"neo-link"}>
       {children}
     </Link>
   );
@@ -22,7 +19,7 @@ const Navbar = () => {
       >
         <Link
           href="/"
-          className="font-display text-xl font-black text-white tracking-tight md:text-2xl"
+          className="font-display text-xl font-black text-offwhite tracking-tight md:text-2xl"
         >
           {env.APP_NAME}
         </Link>

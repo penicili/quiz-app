@@ -1,24 +1,4 @@
-const formats = [
-  {
-    name: "Aiken",
-    description: "Plain-text format for multiple-choice questions.",
-    status: "Available now",
-    className: "bg-cyan",
-  },
-  {
-    name: "GIFT",
-    description: "A flexible text format supported by Moodle.",
-    status: "Coming soon",
-    className: "bg-yellow",
-  },
-  {
-    name: "Moodle XML",
-    description: "Moodle's native format for importing quizzes.",
-    status: "Coming soon",
-    className: "bg-pink",
-  },
-];
-
+import Link from "next/link";
 export default function Home() {
   return (
     <div className="flex flex-col gap-10">
@@ -30,11 +10,12 @@ export default function Home() {
           Create Quiz Files for Moodle
         </p>
         <p className="mt-5 font-heading font-bold max-w-2xl text-base leading-7 md:text-xl">
-          Generate quizzes and export the to a moodle friendly file format
+          Generate quizzes and export to a moodle friendly file format
         </p>
+        <Link className="neo-btn neo-btn--secondary mt-4" href="#">
+          Create New Quiz
+        </Link>
       </section>
-
-
     </div>
   );
 }
