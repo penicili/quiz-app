@@ -12,7 +12,7 @@ function NavLink({ href, children }: { href: string; children: ReactNode }) {
 
 const Navbar = () => {
   return (
-    <header className="bg-gray-700 px-6 py-5 shadow-hard md:px-12 border-b-4 border-b-white">
+    <header className="bg-gray-700 px-6 py-5 md:px-12 border-b-4 border-b-white">
       <nav
         aria-label="Main navigation"
         className="mx-auto flex max-w-6xl items-center justify-between gap-6"

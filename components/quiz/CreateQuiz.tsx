@@ -32,9 +32,42 @@ export default function CreateQuiz() {
     setQuiz((q) => ({ ...q, questions: [...q.questions, emptyQuestion()] }));
   }
 
-  function handleRemoveQuestion(questionIndex:number){
-    console.log(`Removing question ${questionIndex}`)
-    setQuiz((q) => ({...q, questions: q.questions.filter((_, idx) => idx !== questionIndex)}))
+  function handleRemoveQuestion(questionIndex: number) {
+    console.log(`Removing question ${questionIndex}`);
+    setQuiz((q) => ({
+      ...q,
+      questions: q.questions.filter((_, idx) => idx !== questionIndex),
+    }));
+  }
+
+  function removeAnswer(questionIndex: number, answerIndex: number) {
+    setQuiz((currentQuiz) => ({
+      ...currentQuiz,
+      questions: currentQuiz.questions.map((question, currentQuestionIndex) =>
+        currentQuestionIndex === questionIndex
+          ? {
+              ...question,
+              answers: question.answers.filter(
+                (_, currentAnswerIndex) => currentAnswerIndex !== answerIndex,
+              ),
+            }
+          : question,
+      ),
+    }));
+  }
+
+  function addAnswer(questionIndex: number) {
+    setQuiz((q) => ({
+      ...q,
+      questions: q.questions.map((question, c) =>
+        c === questionIndex
+          ? {
+              ...question,
+              answers: [...question.answers, { text: "", isCorrect: false }],
+            }
+          : question,
+      ),
+    }));
   }
 
   function updateQuestion(questionIndex: number, updated: QuestionInput) {
@@ -84,9 +117,14 @@ export default function CreateQuiz() {
               questionIndex={questionIndex}
               onUpdate={(updated) => updateQuestion(questionIndex, updated)}
               onRemove={() => handleRemoveQuestion(questionIndex)}
+              onRemoveAnswer={(ai) => removeAnswer(questionIndex, ai)}
+              onAddAnswer={() => addAnswer(questionIndex)}
             />
           ))}
-          <button className="neo-btn neo-btn--accept self-end" onClick={handleAddQuestion}>
+          <button
+            className="neo-btn neo-btn--accept self-end"
+            onClick={handleAddQuestion}
+          >
             Add question
           </button>
         </div>
