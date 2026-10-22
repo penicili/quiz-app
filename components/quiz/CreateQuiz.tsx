@@ -7,7 +7,7 @@ import type { QuestionInput, QuizInput } from "./types/Quiz.types";
 
 export default function CreateQuiz() {
   const emptyQuestion = (): QuestionInput => ({
-    text: "Question",
+    text: "",
     answers: [
       { text: "Answer 1", isCorrect: true },
       { text: "Answer 2", isCorrect: false },
@@ -28,17 +28,20 @@ export default function CreateQuiz() {
     setQuiz({ title: "New Quiz", questions: [emptyQuestion()] });
   }
 
-  function addQuestion() {
+  function handleAddQuestion() {
     setQuiz((q) => ({ ...q, questions: [...q.questions, emptyQuestion()] }));
+  }
+
+  function handleRemoveQuestion(questionIndex:number){
+    console.log(`Removing question ${questionIndex}`)
+    setQuiz((q) => ({...q, questions: q.questions.filter((_, idx) => idx !== questionIndex)}))
   }
 
   function updateQuestion(questionIndex: number, updated: QuestionInput) {
     setQuiz((currentQuiz) => ({
       ...currentQuiz,
       questions: currentQuiz.questions.map((question, currentQuestionIndex) =>
-        currentQuestionIndex === questionIndex
-          ? updated
-          : question,
+        currentQuestionIndex === questionIndex ? updated : question,
       ),
     }));
   }
@@ -73,15 +76,19 @@ export default function CreateQuiz() {
       {/* Soals */}
       <section className="flex flex-row justify-between">
         {/* Kiri tampilan soal */}
-        <div className="min-w-0 flex-1 px-4 py-8 sm:px-8 md:px-12">
+        <div className="flex min-w-0 flex-1 flex-col gap-6 px-4 py-8 sm:px-8 md:px-12">
           {quiz.questions.map((question, questionIndex) => (
             <QuestionEditor
               key={questionIndex}
               question={question}
               questionIndex={questionIndex}
               onUpdate={(updated) => updateQuestion(questionIndex, updated)}
+              onRemove={() => handleRemoveQuestion(questionIndex)}
             />
           ))}
+          <button className="neo-btn neo-btn--accept self-end" onClick={handleAddQuestion}>
+            Add question
+          </button>
         </div>
         {/* Kanan overview soal */}
         <div className="hidden md:flex flex-col px-12 py-8 bg-white h-screen md:min-w-1/4 border-l-4 border-black">
