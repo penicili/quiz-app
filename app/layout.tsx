@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Syne, Plus_Jakarta_Sans, Inter } from "next/font/google";
-import Navbar from "@/components/layout/navbar";
+import Navbar from "@/server/components/layout/navbar";
 import "./globals.css";
 
 const syne = Syne({

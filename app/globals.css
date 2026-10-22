@@ -36,6 +36,19 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
 body {
   margin: 0;
   background: var(--beige);
@@ -49,13 +62,6 @@ h3,
 h4,
 button {
   font-family: var(--font-jakarta-sans), Arial, Helvetica, sans-serif;
-}
-
-button,
-input,
-textarea,
-select {
-  font: inherit;
 }
 
 .neo-outline {
@@ -99,6 +105,11 @@ select {
   box-shadow: none;
 }
 
+.neo-btn:focus-visible {
+  outline: 3px solid #74b9ff;
+  outline-offset: 3px;
+}
+
 .neo-btn--inverted {
   background: #111111;
   color: white;
@@ -108,12 +119,11 @@ select {
 /* Button variants */
 .neo-btn--secondary {
   background: var(--pink);
-  box-shadow: 5px 5px white;
 }
 
 .neo-btn--secondary:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 7px 7px 0 0 white;
+  box-shadow: 7px 7px 0 0 black;
 }
 
 .neo-btn--secondary:active {
@@ -121,9 +131,8 @@ select {
   box-shadow: none;
 }
 
-.neo-btn:focus-visible {
-  outline: 3px solid #74b9ff;
-  outline-offset: 3px;
+.neo-btn--accept {
+  background: var(--green);
 }
 
 /* non button Links */

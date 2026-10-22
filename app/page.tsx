@@ -9,10 +9,10 @@ export default function Home() {
         <p className="mb-3 font-display text-6xl font-black uppercase tracking-[0.2em] text-black">
           Create Quiz Files for Moodle
         </p>
-        <p className="mt-5 font-heading font-bold max-w-2xl text-base leading-7 md:text-xl">
+        <p className="mt-5 font-heading max-w-2xl text-base leading-7 md:text-xl">
           Generate quizzes and export to a moodle friendly file format
         </p>
-        <Link className="neo-btn neo-btn--secondary mt-4" href="#">
+        <Link className="neo-btn neo-btn--secondary mt-4" href={`/create`}>
           Create New Quiz
         </Link>
       </section>
