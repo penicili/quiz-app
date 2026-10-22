@@ -1,9 +1,26 @@
 "use client";
 import { useState } from "react";
+// Pakai DTO dari sini, soalnya tadinya mau pake db, kurang tau bakal kepake apa kag
+// TODO: sesuain DTO yang dipake di db biar sama kayak interface disini
+
+type AnswerInput = { text: string; isCorrect: boolean };
+type QuestionInput = { text: string; answers: AnswerInput[] };
+type QuizInput = { title: string; questions: QuestionInput[] };
+
 export default function Create() {
-  const [quizTitle, setQuizTitle] = useState("Quiz Title");
-  const [quizDescription, setQuizDescription] = useState("Quiz Description");
-  const [question, setQuestion] = useState("Question");
+  const emptyQuestion = (): QuestionInput => ({
+    text: "Question",
+    answers: [
+      { text: "Answer 1", isCorrect: true },
+      { text: "Answer 2", isCorrect: false },
+      { text: "Answer 3", isCorrect: false },
+      { text: "Answer 4", isCorrect: false },
+    ],
+  });
+  const [quiz, setQuiz] = useState<QuizInput>({
+    title: "New Quiz",
+    questions: [emptyQuestion()],
+  });
 
   function handleGenerate() {
     return null;
@@ -11,6 +28,58 @@ export default function Create() {
 
   function handleReset() {
     return null;
+  }
+
+  function addQuestion() {
+    setQuiz((q) => ({ ...q, questions: [...q.questions, emptyQuestion()] }));
+  }
+
+  function updateQuestion(i: number, updated: QuestionInput) {
+    setQuiz((currentQuiz) => ({
+      ...currentQuiz,
+      questions: currentQuiz.questions.map((question, questionIndex) =>
+        questionIndex === i ? updated : question,
+      ),
+    }));
+  }
+
+  function updateAnswer(
+    questionIndex: number,
+    answerIndex: number,
+    updated: Partial<AnswerInput>,
+  ) {
+    setQuiz((currentQuiz) => ({
+      ...currentQuiz,
+      questions: currentQuiz.questions.map((question, currentQuestionIndex) =>
+        currentQuestionIndex === questionIndex
+          ? {
+              ...question,
+              answers: question.answers.map((answer, currentAnswerIndex) =>
+                currentAnswerIndex === answerIndex
+                  ? { ...answer, ...updated }
+                  : answer,
+              ),
+            }
+          : question,
+      ),
+    }));
+  }
+
+  function selectCorrectAnswer(questionIndex: number, answerIndex: number) {
+    setQuiz((currentQuiz) => ({
+      ...currentQuiz,
+      questions: currentQuiz.questions.map((question, currentQuestionIndex) =>
+        currentQuestionIndex === questionIndex
+          ? {
+              ...question,
+              answers: question.answers.map((answer, currentAnswerIndex) => ({
+                ...answer,
+                isCorrect: currentAnswerIndex === answerIndex,
+              })),
+            }
+          : question,
+      ),
+    }));
   }
 
   return (
@@ -21,17 +90,9 @@ export default function Create() {
           <input
             type="text"
             id="quiz-title"
-            value={quizTitle}
-            onChange={(e) => setQuizTitle(e.target.value)}
+            value={quiz.title}
+            onChange={(e) => setQuiz((q) => ({ ...q, title: e.target.value }))}
             className="w-full max-w-full border-b-2 border-transparent font-display text-2xl font-bold tracking-widest focus:border-black focus:outline-none sm:text-3xl md:w-fit md:text-4xl"
-          />
-          <input
-            type="text"
-            id="quiz-description"
-            value={quizDescription}
-            onChange={(e) => setQuizDescription(e.target.value)}
-            placeholder="Quiz Description"
-            className="w-full max-w-full border-b border-transparent font-heading text-md font-semibold tracking-widest focus:border-black focus:outline-none md:w-fit"
           />
         </div>
         <div className="flex w-full flex-col gap-4 sm:flex-row md:w-auto">
@@ -47,15 +108,55 @@ export default function Create() {
       <section className="flex flex-row justify-between">
         {/* Kiri tampilan soal */}
         <div className="min-w-0 flex-1 px-4 py-8 sm:px-8 md:px-12">
-          <div className="flex min-w-0 items-center gap-4">
-            <p className="shrink-0 font-display text-4xl">1</p>
-            <input
-              name="Question"
-              className="min-w-0 flex-1 text-2xl focus:outline-none border-b-2 border-transparent focus:border-black"
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
-            />
-          </div>
+          {quiz.questions.map((question, questionIndex) => (
+            <div
+              key={questionIndex}
+              className="flex w-full min-w-0 flex-col gap-4"
+            >
+              {/* Nomor dan pertanyaan di atas */}
+              <div className="flex w-full min-w-0 items-center gap-2">
+                <p className="shrink-0 text-2xl">{questionIndex + 1})</p>
+
+                <input
+                  className="min-w-0 flex-1 border-b-2 border-transparent text-2xl focus:border-black focus:outline-none"
+                  value={question.text}
+                  onChange={(e) => {
+                    updateQuestion(questionIndex, {
+                      ...question,
+                      text: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+
+              {/* Answers di bawah */}
+              <div className="flex w-full flex-col gap-3 pl-8">
+                {question.answers.map((answer, answerIndex) => (
+                  <div key={answerIndex} className="flex w-full">
+                    <input
+                      className="w-full border-b-2 border-black bg-transparent px-2 py-1 focus:outline-none"
+                      type="text"
+                      value={answer.text}
+                      onChange={(e) =>
+                        updateAnswer(questionIndex, answerIndex, {
+                          text: e.target.value,
+                        })
+                      }
+                    />
+                    <input
+                      type="radio"
+                      name={`question-${questionIndex}`}
+                      className="neo-radio"
+                      checked={answer.isCorrect}
+                      onChange={() =>
+                        selectCorrectAnswer(questionIndex, answerIndex)
+                      }
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
         {/* Kanan overview soal */}
         <div className="hidden md:flex flex-col px-12 py-8 bg-white h-screen md:min-w-1/4 border-l-4 border-black">

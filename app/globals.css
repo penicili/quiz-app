@@ -159,3 +159,19 @@ button {
   transform: translate(3px, 3px);
   box-shadow: none;
 }
+
+.neo-radio {
+  appearance: none;
+  flex: 0 0 auto;
+  background: var(--ink);
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 3px solid var(--off-white);
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.neo-radio:checked {
+  background: var(--off-white);
+  box-shadow: inset 0 0 0 4px var(--pink);
+}

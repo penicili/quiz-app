@@ -25,6 +25,7 @@ export type QuestionDTO = {
 
 export type QuizDTO = {
   id: string;
+  name: string;
   questions: QuestionDTO[];
 };
 
@@ -41,6 +42,8 @@ const questionToDTO = (question: QuestionRecord): QuestionDTO => ({
 });
 
 export const toDTO = (quiz: QuizRecord): QuizDTO => ({
+  // TODO: Benerin ini lah wkkwwk
+  name: "nama",
   id: quiz._id.toHexString(),
   questions: quiz.questions.map(questionToDTO),
 });
