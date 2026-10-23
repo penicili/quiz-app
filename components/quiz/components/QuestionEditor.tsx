@@ -7,8 +7,8 @@ type Props = {
   questionIndex: number;
   onUpdate: (updated: QuestionInput) => void;
   onRemove: () => void;
-  onRemoveAnswer: (ai:number)=> void;
-  onAddAnswer: ()=> void;
+  onRemoveAnswer: (ai: number) => void;
+  onAddAnswer: () => void;
 };
 
 export default function QuestionEditorCard({
@@ -17,8 +17,11 @@ export default function QuestionEditorCard({
   onUpdate,
   onRemove,
   onRemoveAnswer,
-  onAddAnswer
+  onAddAnswer,
 }: Props) {
+  // TODO: error handling kalau keluar dari ini
+  // TODO: kalobisa dimasukin ke Quiz aja ini label A B C D  ny
+  const answerOptions = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   return (
     <div className="neo-card flex w-full min-w-0 flex-col gap-4">
       {/* Nomor dan pertanyaan di atas */}
@@ -64,7 +67,7 @@ export default function QuestionEditorCard({
             <input
               className="w-full border-b-2 border-black bg-transparent px-2 py-1 focus:outline-none"
               type="text"
-              placeholder="Answer"
+              placeholder={answerOptions[answerIndex]}
               value={answer.text}
               onChange={(e) =>
                 onUpdate({
@@ -81,13 +84,18 @@ export default function QuestionEditorCard({
             {answer.isCorrect ? (
               <span>(correct)</span>
             ) : (
-              <button onClick={() => onRemoveAnswer(answerIndex)} className="neo-btn neo-btn--secondary px-1! py-0!">
+              <button
+                onClick={() => onRemoveAnswer(answerIndex)}
+                className="neo-btn neo-btn--secondary px-1! py-0!"
+              >
                 X
               </button>
             )}
           </div>
         ))}
-        <button className="neo-btn" onClick={onAddAnswer}>Add Answer</button>
+        <button className="neo-btn" onClick={onAddAnswer}>
+          Add Answer
+        </button>
       </div>
     </div>
   );

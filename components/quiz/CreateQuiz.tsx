@@ -11,10 +11,10 @@ export default function CreateQuiz() {
   const emptyQuestion = (): QuestionInput => ({
     text: "",
     answers: [
-      { text: "Answer 1", isCorrect: true },
-      { text: "Answer 2", isCorrect: false },
-      { text: "Answer 3", isCorrect: false },
-      { text: "Answer 4", isCorrect: false },
+      { text: "", isCorrect: true },
+      { text: "", isCorrect: false },
+      { text: "", isCorrect: false },
+      { text: "", isCorrect: false },
     ],
   });
   const [quiz, setQuiz] = useState<QuizInput>({
