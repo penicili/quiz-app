@@ -4,6 +4,8 @@ import { useState } from "react";
 // TODO: sesuain DTO yang dipake di db biar sama kayak interface disini
 import QuestionEditor from "./components/QuestionEditor";
 import type { QuestionInput, QuizInput } from "./types/Quiz.types";
+import { exportQuiz } from "@/lib/client/export";
+import { allowedFormats } from "@/lib/client/export";
 
 export default function CreateQuiz() {
   const emptyQuestion = (): QuestionInput => ({
@@ -20,8 +22,10 @@ export default function CreateQuiz() {
     questions: [emptyQuestion()],
   });
 
+  const [format, setFormat] = useState<allowedFormats>(allowedFormats.Aiken);
+
   function handleGenerate() {
-    return null;
+    exportQuiz(quiz, format);
   }
 
   function handleReset() {
@@ -95,7 +99,10 @@ export default function CreateQuiz() {
           />
         </div>
         <div className="flex w-full flex-col gap-4 sm:flex-row md:w-auto">
-          <button className="neo-btn neo-btn--accept w-full sm:w-auto">
+          <button
+            onClick={handleGenerate}
+            className="neo-btn neo-btn--accept w-full sm:w-auto"
+          >
             Generate
           </button>
           <button
@@ -130,7 +137,19 @@ export default function CreateQuiz() {
         </div>
         {/* Kanan overview soal */}
         <div className="hidden md:flex flex-col px-12 py-8 bg-white h-screen md:min-w-1/4 border-l-4 border-black">
-          Tes
+          <label>Format</label>
+          <select
+            id="format"
+            value={format}
+            onChange={(e) => setFormat(e.target.value as allowedFormats)}
+            className="neo-input"
+          >
+            {Object.values(allowedFormats).map((allowedFormat) => (
+              <option key={allowedFormat} value={allowedFormat}>
+                {allowedFormat}
+              </option>
+            ))}
+          </select>
         </div>
       </section>
     </div>
