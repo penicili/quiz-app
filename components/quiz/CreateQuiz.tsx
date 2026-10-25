@@ -24,7 +24,7 @@ export default function CreateQuiz() {
 
   const [format, setFormat] = useState<allowedFormats>(allowedFormats.Aiken);
 
-  function handleGenerate() {
+  function handleExport() {
     exportQuiz(quiz, format);
   }
 
@@ -100,10 +100,10 @@ export default function CreateQuiz() {
         </div>
         <div className="flex w-full flex-col gap-4 sm:flex-row md:w-auto">
           <button
-            onClick={handleGenerate}
+            onClick={handleExport}
             className="neo-btn neo-btn--accept w-full sm:w-auto"
           >
-            Generate
+            Export
           </button>
           <button
             onClick={handleReset}
