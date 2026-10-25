@@ -26,7 +26,7 @@ const Navbar = () => {
 
         <div className="flex items-center gap-5 text-sm font-bold md:gap-8">
           <NavLink href="/">Home</NavLink>
-          <NavLink href="/quizzes">Create</NavLink>
+          <NavLink href="/create">Create</NavLink>
         </div>
       </nav>
     </header>
