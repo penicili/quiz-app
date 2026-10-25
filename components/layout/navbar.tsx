@@ -25,8 +25,8 @@ const Navbar = () => {
         </Link>
 
         <div className="flex items-center gap-5 text-sm font-bold md:gap-8">
-          <NavLink href="/">link1</NavLink>
-          <NavLink href="/quizzes">link2</NavLink>
+          <NavLink href="/">Home</NavLink>
+          <NavLink href="/quizzes">Create</NavLink>
         </div>
       </nav>
     </header>
