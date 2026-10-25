@@ -1,40 +1,56 @@
-"use-client";
+"use client";
 import type { QuizInput } from "@/components/quiz/types/Quiz.types";
 import { toAiken } from "./toAiken";
+import { toXml } from "./toXml";
 
 export enum allowedFormats {
   Aiken = "Aiken",
+  MoodleXml = "Moodle XML",
 }
 
 enum fileFormats {
   txt = "txt",
+  xml = "xml",
 }
 
-const downloadQuiz = (q: string, fileFormat: fileFormats, fileName: string) => {
-  if (fileFormat === fileFormats.txt) {
-    const blob = new Blob([q], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
+const downloadQuiz = (
+  content: string,
+  fileFormat: fileFormats,
+  fileName: string,
+) => {
+  const fileDetails = {
+    [fileFormats.txt]: {
+      extension: fileFormats.txt,
+      mimeType: "text/plain;charset=utf-8",
+    },
+    [fileFormats.xml]: {
+      extension: fileFormats.xml,
+      mimeType: "application/xml;charset=utf-8",
+    },
+  }[fileFormat];
 
-    link.href = url;
-    link.download = `${fileName}.txt`;
-    link.click();
-    URL.revokeObjectURL(url);
-  } else {
+  if (!fileDetails) {
     throw new Error("Invalid file format");
   }
+
+  const blob = new Blob([content], { type: fileDetails.mimeType });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = `${fileName}.${fileDetails.extension}`;
+  link.click();
+  URL.revokeObjectURL(url);
 };
 
 export const exportQuiz = (quiz: QuizInput, exportType: allowedFormats) => {
-  try {
-    // const json = JSON.stringify(quiz);
-    if (exportType === allowedFormats.Aiken) {
-      const aikenfile = toAiken(quiz);
-      return downloadQuiz(aikenfile, fileFormats.txt, quiz.title);
-    } else {
-      throw new Error("Unavailable format");
-    }
-  } catch (e) {
-    throw new Error(e instanceof Error ? e.message : String(e));
+  if (exportType === allowedFormats.Aiken) {
+    return downloadQuiz(toAiken(quiz), fileFormats.txt, quiz.title);
   }
+
+  if (exportType === allowedFormats.MoodleXml) {
+    return downloadQuiz(toXml(quiz), fileFormats.xml, quiz.title);
+  }
+
+  throw new Error("Unavailable format");
 };
