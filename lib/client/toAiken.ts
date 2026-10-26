@@ -25,7 +25,7 @@ const aikenQuestion = (q: QuestionInput) => {
   return lines.join("\n");
 };
 
-export const toAiken = (jsonQuiz: QuizInput) => {
-  return jsonQuiz.questions.map(aikenQuestion).join("\n\n");
+export const toAiken = (q: QuizInput) => {
+  return q.questions.map(aikenQuestion).join("\n\n");
 };
 

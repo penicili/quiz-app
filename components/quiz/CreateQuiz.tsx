@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import generateQuiz from "@/lib/server/generateQuiz";
 // Pakai DTO dari sini, soalnya tadinya mau pake db, kurang tau bakal kepake apa kag
 // TODO: sesuain DTO yang dipake di db biar sama kayak interface disini
 import QuestionEditor from "./components/QuestionEditor";
@@ -23,6 +24,9 @@ export default function CreateQuiz() {
   });
 
   const [format, setFormat] = useState<allowedFormats>(allowedFormats.Aiken);
+  const [file, setFile] = useState<File | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [generationError, setGenerationError] = useState<string | null>(null);
 
   function handleExport() {
     exportQuiz(quiz, format);
@@ -30,6 +34,27 @@ export default function CreateQuiz() {
 
   function handleReset() {
     setQuiz({ title: "New Quiz", questions: [emptyQuestion()] });
+  }
+
+  async function handleGenerate() {
+    if (!file) {
+      setGenerationError("Choose a PDF file first.");
+      return;
+    }
+
+    setIsGenerating(true);
+    setGenerationError(null);
+
+    try {
+      const generatedQuiz = await generateQuiz(file);
+      setQuiz(generatedQuiz);
+    } catch (error: unknown) {
+      setGenerationError(
+        error instanceof Error ? error.message : "Unable to generate quiz.",
+      );
+    } finally {
+      setIsGenerating(false);
+    }
   }
 
   function handleAddQuestion() {
@@ -136,20 +161,48 @@ export default function CreateQuiz() {
           </button>
         </div>
         {/* Kanan overview soal */}
-        <div className="hidden md:flex flex-col px-12 py-8 bg-white h-screen md:min-w-1/4 border-l-4 border-black">
-          <label>Format</label>
-          <select
-            id="format"
-            value={format}
-            onChange={(e) => setFormat(e.target.value as allowedFormats)}
-            className="neo-input"
-          >
-            {Object.values(allowedFormats).map((allowedFormat) => (
-              <option key={allowedFormat} value={allowedFormat}>
-                {allowedFormat}
-              </option>
-            ))}
-          </select>
+        <div className="hidden md:flex md:sticky md:top-0 md:h-[100vh] md:w-1/4 md:shrink-0 flex-col gap-6 px-12 py-8 bg-white border-l-4 border-black">
+          <div className="flex flex-col gap-2">
+            <label htmlFor="format">Format</label>
+            <select
+              id="format"
+              value={format}
+              onChange={(e) => setFormat(e.target.value as allowedFormats)}
+              className="neo-input"
+            >
+              {Object.values(allowedFormats).map((allowedFormat) => (
+                <option key={allowedFormat} value={allowedFormat}>
+                  {allowedFormat}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="quiz-file">Source PDF</label>
+            <input
+              id="quiz-file"
+              type="file"
+              accept="application/pdf,.pdf"
+              onChange={(event) => {
+                setFile(event.target.files?.[0] ?? null);
+                setGenerationError(null);
+              }}
+              className="neo-input"
+            />
+            <button
+              type="button"
+              onClick={handleGenerate}
+              disabled={isGenerating}
+              className="neo-btn neo-btn--accept mt-2 w-full disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {isGenerating ? "Generating..." : "Generate"}
+            </button>
+            {generationError && (
+              <p className="text-sm font-bold text-red-600" role="alert">
+                {generationError}
+              </p>
+            )}
+          </div>
         </div>
       </section>
     </div>
