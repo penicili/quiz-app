@@ -13,7 +13,7 @@ This project is based on [Quiz App](https://roadmap.sh/projects/quiz-app) from [
 
 ## Additional Requirements
 - AI integration, create a quiz from a provided PDF file material
-
+- Can upload quiz, uploaded quiz will result a Quiz key, quiz key used to do the quiz
 ---
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) 
 
