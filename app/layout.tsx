@@ -20,7 +20,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Quiz App",
-  description: "Create and take quizzes.",
+  description: "Create moodle-friendly quizzes",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
