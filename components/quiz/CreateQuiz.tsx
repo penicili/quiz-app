@@ -3,7 +3,8 @@ import { useState } from "react";
 // Pakai DTO dari sini, soalnya tadinya mau pake db, kurang tau bakal kepake apa kag
 // TODO: sesuain DTO yang dipake di db biar sama kayak interface disini
 import QuestionEditor from "./components/QuestionEditor";
-import type { QuestionInput, QuizInput } from "./types/Quiz.types";
+// import type { QuestionInput, QuizInput } from "./types/Quiz.types";
+import type { QuestionInput, QuizInput, AnswerInput } from "@/lib/schemas/quizzes";
 import { exportQuiz } from "@/lib/client/export";
 import { allowedFormats } from "@/lib/client/export";
 

@@ -8,7 +8,7 @@ import type {
 import { quizzesCols } from "@/lib/db/collections";
 import {
   createQuizSchema,
-  type CreateQuizInput,
+  type QuizInput,
 } from "@/lib/schemas/quizzes";
 
 export type AnswerDTO = {
@@ -59,7 +59,7 @@ export const listQuizzes = async (page = 1, pageSize = 20) => {
   return docs.map(toDTO);
 };
 
-export const createQuiz = async (input: CreateQuizInput): Promise<QuizDTO> => {
+export const createQuiz = async (input: QuizInput): Promise<QuizDTO> => {
   const data = createQuizSchema.parse(input);
 
   const quiz: QuizRecord = {

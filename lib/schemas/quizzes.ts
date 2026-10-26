@@ -1,21 +1,20 @@
 import { z } from "zod";
 
-export const createQuizSchema = z.object({
-  questions: z
-    .array(
-      z.object({
-        text: z.string().trim().min(1),
-        answers: z
-          .array( 
-            z.object({
-              text: z.string().trim().min(1),
-              isCorrect: z.boolean(),
-            }),
-          )
-          .min(2),
-      }),
-    )
-    .min(1),
+export const createAnswerSchema = z.object({
+  text: z.string().min(1),
+  isCorrect: z.boolean(),
 });
 
-export type CreateQuizInput = z.infer<typeof createQuizSchema>;
+export const createQuestionSchema = z.object({
+  text: z.string().trim().min(1),
+  answers: z.array(createAnswerSchema).min(1)
+});
+
+export const createQuizSchema = z.object({
+  title: z.string(),
+  questions: z.array(createQuestionSchema).min(1)
+});
+
+export type QuizInput = z.infer<typeof createQuizSchema>;
+export type QuestionInput = z.infer<typeof createQuestionSchema>;
+export type AnswerInput = z.infer<typeof createAnswerSchema>;
