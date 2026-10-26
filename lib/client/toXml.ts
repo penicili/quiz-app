@@ -1,7 +1,4 @@
-import type {
-  QuizInput,
-  QuestionInput,
-} from "@/components/quiz/types/Quiz.types";
+import type { QuizInput, QuestionInput } from "../schemas/quizzes";
 
 const toCdata = (value: string): string =>
   `<![CDATA[${value.replaceAll("]]>", "]]]]><![CDATA[>")}]]>`;

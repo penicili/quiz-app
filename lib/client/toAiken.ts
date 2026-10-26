@@ -1,8 +1,5 @@
 "use-client";
-import type {
-  QuizInput,
-  QuestionInput,
-} from "@/components/quiz/types/Quiz.types";
+import type { QuizInput, QuestionInput } from "../schemas/quizzes";
 
 // Lokasi default file PHP ketika dijalankan melalui XAMPP adalah…
 // A) /xampp/www/

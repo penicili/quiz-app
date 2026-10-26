@@ -1,5 +1,5 @@
 "use client";
-import type { QuizInput } from "@/components/quiz/types/Quiz.types";
+import type { QuizInput } from "../schemas/quizzes";
 import { toAiken } from "./toAiken";
 import { toXml } from "./toXml";
 
